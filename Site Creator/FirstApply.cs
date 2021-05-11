@@ -30,12 +30,7 @@ namespace Site_Creator
             }
             else
             {
-                DialogResult dialogResult = MessageBox.Show("Мы создаём сайт! Или Вы хотите создать меню ресторана?", "Нельзя добавить больше элементов!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                if(dialogResult == DialogResult.Yes)
-                {
-                    Application.Exit();
-
-                }
+                MessageBox.Show("Нельзя добавить больше элементов!");
             }
         }
         private void Form1_KeyDown(object sender, KeyEventArgs e)
@@ -87,6 +82,47 @@ namespace Site_Creator
             streamwriter.WriteLine("</head>");
             streamwriter.WriteLine("<body>");
 
+            if (form1.checkBox3.Checked == true)
+            {
+                if (form1.comboBox1.SelectedIndex == 0) // ОБЛОЖКА
+                {
+                    if (pictureBox3.Image != null && textBox7.Text != null && textBox8.Text != null)
+                    {
+                        streamwriter.WriteLine("<div class=" + "zagolovok1" + ">");
+                        streamwriter.WriteLine("<div class=" + "img" + ">");
+                        streamwriter.WriteLine($"<h2>{textBox7.Text}</h2>");
+                        streamwriter.WriteLine("<br>");
+                        streamwriter.WriteLine($"<p>{textBox8.Text}</p>");
+                        streamwriter.WriteLine("</div>");
+                        streamwriter.WriteLine("</div>");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Заполните обложку");
+                    }
+                }
+                if (form1.comboBox1.SelectedIndex == 2) // ОБЛОЖКА
+                {
+
+                    if (pictureBox3.Image != null && textBox7.Text != null && textBox8.Text != null)
+                    {
+                        streamwriter.WriteLine("<div class=" + "zagolovok2" + ">");
+                        streamwriter.WriteLine("<div class=" + "img" + ">");
+                        streamwriter.WriteLine($"<p class=\"zag1\">{textBox7.Text}</p>");
+                        streamwriter.WriteLine("<hr class= \"hr1\">");
+                        streamwriter.WriteLine("<br>");
+                        streamwriter.WriteLine($"<p class= \"opisanie\"> {textBox8.Text}");
+                        streamwriter.WriteLine("</p>");
+                        streamwriter.WriteLine("</div>");
+                        streamwriter.WriteLine("</div>");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Заполните обложку 2");
+                    }
+                }
+            }
+
             if (form1.checkBox2.Checked == true) // НАВИГАЦИОННОЕ МЕНЮ С ЛОГО ПО ЦЕНТРУ
             {
                 if (form1.comboBox2.SelectedIndex == 0)
@@ -95,11 +131,15 @@ namespace Site_Creator
                     {
                         streamwriter.WriteLine("<div class=" + "nav-menu-1" + ">");
                         streamwriter.WriteLine("<ul class=" + "main-menu-1" + ">");
-                        streamwriter.WriteLine($"<li><a href=\"11\" > {textBox9.Text}</a></li>");
-                        streamwriter.WriteLine($"<li><a href= \"11\" > {listBox1.SelectedItem}</a></li>");
-                        streamwriter.WriteLine($"<li><p> {textBox9.Text} </p></li>");
-                        streamwriter.WriteLine($"<li><a href= \"11\" > {listBox1.SelectedItem}</a></li>");
-                        streamwriter.WriteLine($"<li><a href= \"11\" > {textBox9.Text}</a></li>");
+                        for (int i = 0; i < listBox1.Items.Count - 2; i++)
+                        {
+                            streamwriter.WriteLine($"<li><a href=\"\" >{listBox1.Items[i]}</a></li>");
+                        }
+                        streamwriter.WriteLine($"<li><p>{textBox12.Text}</p></li>");
+                        for (int i = 2; i < listBox1.Items.Count; i++)
+                        {
+                            streamwriter.WriteLine($"<li><a href=\"\" >{listBox1.Items[i]}</a></li>");
+                        }
                         streamwriter.WriteLine("</ul>");
                         streamwriter.WriteLine("</div>");
                     }
@@ -108,44 +148,157 @@ namespace Site_Creator
                         MessageBox.Show("Заполните навигационное меню");
                     }
                 }
+
+                if (form1.comboBox2.SelectedIndex == 1) // НАВИГАЦИОННОЕ МЕНЮ по краям
+                {
+                    if (textBox12.Text != null && listBox1.Items.Count > 0)
+                    {
+                        streamwriter.WriteLine("<div class=" + "nav-menu-2" + ">");
+                        streamwriter.WriteLine("<ul class=" + "main-menu-2" + ">");
+                        for (int i = 0; i < listBox1.Items.Count-2; i++)
+                        {
+                            streamwriter.WriteLine($"<li><a href=\"\" >{listBox1.Items[i]}</a></li>");
+                        }
+                        streamwriter.WriteLine($"<div class=" + "main-menu2-right" + ">");
+                        for (int i = 2; i < listBox1.Items.Count; i++)
+                        {
+                            streamwriter.WriteLine($"<li><a href=\"\" >{listBox1.Items[i]}</a></li>");
+                        }
+                        streamwriter.WriteLine("</div>");
+                        streamwriter.WriteLine("</ul>");
+                        streamwriter.WriteLine("</div>");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Заполните навигационное меню 2");
+                    }
+                }
+            }
+            
+            if(form1.comboBox5.SelectedIndex == 1) // ТТЕКСТ ПОЛЕ
+            {
+                if(textBox2.Text != null && textBox1.Text != null)
+                {
+                    streamwriter.WriteLine("<div class=" + "fondiv" + ">");
+                    streamwriter.WriteLine("<br><br>");
+                    streamwriter.WriteLine($"<b class=\"text1\">{textBox2.Text}</b> <br>");
+                    streamwriter.WriteLine($"<p class=\"text2\">{textBox1.Text}</p>");
+                    streamwriter.WriteLine("</div>");
+                    streamwriter.WriteLine("<br>");
+
+                }
+                else
+                {
+                    MessageBox.Show("Не заполнен тестовый блок 2");
+                }
             }
 
-            //if (form1.comboBox1.SelectedIndex == 0) // ОБЛОЖКА
-            //{
-            //    if(pictureBox3.Image != null && textBox7.Text != null && textBox8.Text != null)
-            //    {
-            //        streamwriter.WriteLine("<div class=" + "zagolovok1" + ">");
-            //        streamwriter.WriteLine($"<h2>{textBox7.Text}</h2>");
-            //        streamwriter.WriteLine("<br>");
-            //        streamwriter.WriteLine($"<p>{textBox8.Text}</p>");
-            //        streamwriter.WriteLine("</div>");
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("Заполните обложку");
-            //    }
-            //}
-            // if (form1.comboBox1.SelectedIndex == 2) // ОБЛОЖКА
-            //{
+            if (form1.comboBox4.SelectedIndex == 0)// ПРЕИМУЩЕСТВА
+            {
+                if(textBox3.Text != null && listBox2.Items.Count > 0)
+                {
+                    streamwriter.WriteLine("<div class=" + "prem1" + ">");
+                    streamwriter.WriteLine($"<h2>{textBox3.Text}</h2>");
+                    streamwriter.WriteLine("<ol>");
+                    for(int i = 0; i < listBox2.Items.Count; i++)
+                    {
+                        streamwriter.WriteLine($"<li>{listBox2.Items[i]}");
+                    }
+                    streamwriter.WriteLine("</ol>");
+                    streamwriter.WriteLine("</div>");
+                }
+                else
+                {
+                    MessageBox.Show("Заполните преимущества");
+                }
+            }
+            if(form1.comboBox4.SelectedIndex == 1) // ПРЕИМУЩЕСТВА
+            {
+                if (textBox3.Text != null && listBox2.Items.Count > 0)
+                {
+                    streamwriter.WriteLine("<div class=" + "prem1" + ">");
+                    streamwriter.WriteLine($"<h2>{textBox3.Text}</h2>");
+                    streamwriter.WriteLine("<ol>");
+                    for (int i = 0; i < listBox2.Items.Count; i++)
+                    {
+                        streamwriter.WriteLine($"<li>{listBox2.Items[i]}");
+                    }
+                    streamwriter.WriteLine("</ol>");
+                    streamwriter.WriteLine("</div>");
+                }
+                else
+                {
+                    MessageBox.Show("Заполните преимущества 2");
+                }
+            }
+            if (form1.comboBox4.SelectedIndex == 2)// ПРЕИМУЩЕСТВА
+            {
 
-            //    if (pictureBox3.Image != null && textBox7.Text != null && textBox8.Text != null)
-            //    {
-            //        streamwriter.WriteLine("<div class=" + "zagolovok2" + ">");
-            //        streamwriter.WriteLine($"<p class=\"zag1\">{textBox7.Text}</p>");
-            //        streamwriter.WriteLine("<hr class= \"hr1\">");
-            //        streamwriter.WriteLine("<br>");
-            //        streamwriter.WriteLine($"<p class= \"opisanie\"> {textBox8.Text}");
-            //        streamwriter.WriteLine("</p>");
-            //        streamwriter.WriteLine("</div>");
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("Заполните обложку 2");
-            //    }
-            //}
+            }
 
+            if(form1.comboBox7.SelectedIndex == 0) // Галерея
+            {
 
-             
+            }
+            
+            if(form1.comboBox3.SelectedIndex == 1) // КОНТАКТЫ
+            {
+                if(listBox3.Items.Count > 0)
+                {
+                    //                < div class="contacts-1">
+                    //    <p class="text-cont">+79175905779</p>
+                    //</div>
+                    streamwriter.WriteLine("<div class=" + "contacts-1" + ">");
+                    for(int i = 0; i < listBox3.Items.Count; i++)
+                    {
+                        streamwriter.WriteLine($"<p>{listBox3.Items[i]}</p>");
+                    }
+                    streamwriter.WriteLine("</div>");
+                }
+                else
+                {
+                    MessageBox.Show("Заполните контакты 2");
+                }
+            }
+            if (form1.comboBox6.SelectedIndex == 0) // ФУТЕР
+            {
+                if(textBox13.Text != null && listBox4.Items.Count > 0)
+                {
+                    streamwriter.WriteLine("<div class=" + "podval1" + ">");
+                    streamwriter.WriteLine("<ul class=" + "podval-1" + ">");
+                    streamwriter.WriteLine($"<li><a href=\"podval-img1\" src= >{textBox13.Text}</a></li>");
+                    streamwriter.WriteLine("<div class=" + "main-menu2-right" + ">");
+                    streamwriter.WriteLine($"<li><img class=\"podval-img1\" src=\"C:\\Users\\negor\\OneDrive\\Рабочий стол\\Курсач\\d29fc14e3e508b26c3c121c133df174c.png\" alt =\"\" height=\"40px\"></li>");
+                    streamwriter.WriteLine($"<li><img class=\"podval-img2\" src=\"C:\\Users\negor\\OneDrive\\Рабочий стол\\Курсач\\tik_tok_logo.png\" alt =\"\" height=\"40px\"></li>");
+                    streamwriter.WriteLine("</div>");
+                    streamwriter.WriteLine("</ul>");
+                    streamwriter.WriteLine("</div>");
+                }
+                else
+                {
+                    MessageBox.Show("Футер не заполнен");
+                }
+            }
+            if(form1.comboBox6.SelectedIndex == 1) // ФУТЕР
+            {
+                if (textBox13.Text != null && listBox4.Items.Count > 0)
+                {
+                    streamwriter.WriteLine("<div class=" + "podval2" + ">");
+                    streamwriter.WriteLine("<ul class=" + "pod" + ">");
+                    for (int i = 0; i < listBox4.Items.Count; i++)
+                    {
+                        streamwriter.WriteLine($"<li><a href=\"\" >{listBox4.Items[i]}</a></li>");
+                    }
+                    streamwriter.WriteLine("</ul>");
+                    streamwriter.WriteLine($"<p class=\"podval-p\">{textBox13.Text}</p>");
+                    streamwriter.WriteLine("</div>");
+                }
+                else
+                {
+                    MessageBox.Show("Заполните футер 2");
+                }
+            }
+
 
             streamwriter.WriteLine("</body>");
             streamwriter.WriteLine("</html>");
@@ -194,21 +347,23 @@ namespace Site_Creator
         private void button12_Click(object sender, EventArgs e)
         {
             value++;
-            if (value <= 2)
+            if (value <= 5)
             {
                 listBox4.Items.Add(textBox11.Text);
                 textBox11.Text = "";
             }
             else
             {
-                MessageBox.Show("Вы слишком социальный", "Критическая ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Слишком много соц сетей", "Критическая ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 textBox11.Text = "";
             }
         }
-
+        
         private void pictureBox3_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
+
+            //string picturePath = System.IO.Path.GetDirectoryName(openFileDialog.FileName);
 
             openFileDialog.Filter = "Image Files(*.JPG; *.PNG; *.BMP)| *.JPG; *.PNG; *.BMP| All files (*.*)| *.*";
 
@@ -217,6 +372,7 @@ namespace Site_Creator
                 try
                 {
                     pictureBox3.Image = new Bitmap(openFileDialog.FileName);
+                   // textBox8.Text = picturePath;
                 }
                 catch
                 {

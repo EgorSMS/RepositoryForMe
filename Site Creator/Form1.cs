@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +14,6 @@ namespace Site_Creator
     public partial class Form1 : Form
     {
         string path = @"C:\Users\negor\OneDrive\Рабочий стол\Курсач\HTML + CSS\HTML.html";
-        string[] oblojkaItems = { "1", "2", "3" };
 
         struct State
         {
@@ -108,6 +108,16 @@ namespace Site_Creator
             comboBox7.ValueMember = "IdCombo";
             // ----------------------------------------------------------------------------------------------------------
 
+            // 8 КОМБО БОКС НАВ МЕНЮ
+            var dataSource8 = new List<ComboClass>();
+            dataSource8.Add(new ComboClass() { IdCombo = 1, NameCombo = "Темная тема" });
+            dataSource8.Add(new ComboClass() { IdCombo = 2, NameCombo = "Светлая тема" });
+
+            comboBox8.DataSource = dataSource8;
+            comboBox8.DisplayMember = "NameCombo";
+            comboBox8.ValueMember = "IdCombo";
+            // ----------------------------------------------------------------------------------------------------------
+
         }
 
 
@@ -115,16 +125,9 @@ namespace Site_Creator
         public Form1()
         {
             InitializeComponent();
-            InitComboBox();
-            //comboBox1.Items.AddRange(oblojkaItems);
-            
+            InitComboBox();            
         }
 
-        // Бинарная запись в файл.html
-        // БИНАРНЫЕ ЗАПИСЬ И ЧТЕНИЕ ФАЙЛОВ
-
-        // Обновляем текстовик каждый раз при нажатии на оформить 
-        // КАК НАЙТИ СПЕЦИАЛЬНУЮ СТРОКУ В ФАЙЛЕ И ВСТАВИТЬ ТУДА ТЕКСТ
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -157,6 +160,17 @@ namespace Site_Creator
                 applyForm.label10.Text = "Почта:";
                 applyForm.label11.Text = "Телефон:";
             }
+            if(comboBox2.SelectedIndex == 1)
+            {
+                applyForm.label9.Visible = false;
+                applyForm.textBox12.Visible = false;
+            }
+
+            if(comboBox5.SelectedIndex == 0 || comboBox5.SelectedIndex == 2)
+            {
+                applyForm.label4.Visible = false;
+                applyForm.textBox2.Visible = false;
+            }
 
             if(checkBox1.Checked == true) // ДОБАВИТЬ ГАЛЕРЕЮ
             {
@@ -174,13 +188,36 @@ namespace Site_Creator
                 applyForm.groupBox9.Visible = false;
             }
 
-            if(checkBox2.Checked == true)
+            if(checkBox2.Checked == true) // ОТОБРАЖЕНИЕ НАВ МЕНЮ НА ВТОРОЙ ФОРМЕ
             {
                 applyForm.groupBox3.Visible = true;
             }
             else
             {
                 applyForm.groupBox3.Visible = false;
+            }
+
+            if(checkBox3.Checked == true) // ОТОБРАЖЕНИЕ ОБЛОЖКИ НА ВТОРОЙ ФОРМЕ
+            {
+                applyForm.groupBox2.Visible = true;
+            }
+            else
+            {
+                applyForm.groupBox2.Visible = false;
+            }
+
+            if(comboBox5.SelectedIndex == 0 || comboBox5.SelectedIndex == 2)
+            {
+                applyForm.label4.Visible = false;
+                applyForm.textBox2.Visible = false;
+            }
+
+            if(comboBox3.SelectedIndex == 1)
+            {
+                applyForm.label10.Visible = false;
+                applyForm.textBox6.Visible = false;
+                applyForm.label11.Visible = false;
+                applyForm.textBox5.Visible = false;
             }
 
 
@@ -190,7 +227,155 @@ namespace Site_Creator
 
         private void button3_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start(path);
+            StreamWriter streamwriter = new StreamWriter(@"D:\index.html");
+            streamwriter.WriteLine("<html>");
+            streamwriter.WriteLine("<head>");
+            streamwriter.WriteLine($"<title>Название</title>");
+            streamwriter.WriteLine("<link rel=\"stylesheet\" href= \"C:\\Users\\negor\\OneDrive\\Рабочий стол\\Курсач\\HTML + CSS\\style.css\" >");
+            streamwriter.WriteLine("</head>");
+            streamwriter.WriteLine("<body>");
+
+            if (checkBox3.Checked == true)
+            {
+                if (comboBox1.SelectedIndex == 0) // ОБЛОЖКА
+                {
+                        streamwriter.WriteLine("<div class=" + "zagolovok1" + ">");
+                        streamwriter.WriteLine("<div class=" + "img" + ">");
+                        streamwriter.WriteLine($"<h2>Заголовок обложки</h2>");
+                        streamwriter.WriteLine("<br>");
+                        streamwriter.WriteLine($"<p>Подзаголовок обложки</p>");
+                        streamwriter.WriteLine("</div>");
+                        streamwriter.WriteLine("</div>");
+                    }
+                }
+                if (comboBox1.SelectedIndex == 2) // ОБЛОЖКА
+                {
+                        streamwriter.WriteLine("<div class=" + "zagolovok2" + ">");
+                        streamwriter.WriteLine("<div class=" + "img" + ">");
+                        streamwriter.WriteLine($"<p class=\"zag1\">Заголовок обложки</p>");
+                        streamwriter.WriteLine("<hr class= \"hr1\">");
+                        streamwriter.WriteLine("<br>");
+                        streamwriter.WriteLine($"<p class= \"opisanie\">Описание обложки");
+                        streamwriter.WriteLine("</p>");
+                        streamwriter.WriteLine("</div>");
+                        streamwriter.WriteLine("</div>");
+                }
+
+            if (checkBox2.Checked == true) // НАВИГАЦИОННОЕ МЕНЮ С ЛОГО ПО ЦЕНТРУ
+            {
+                if (comboBox2.SelectedIndex == 0)
+                {
+                        streamwriter.WriteLine("<div class=" + "nav-menu-1" + ">");
+                        streamwriter.WriteLine("<ul class=" + "main-menu-1" + ">");
+                        streamwriter.WriteLine($"<li><a href=\"\" >Пункт меню</a></li>");
+                        streamwriter.WriteLine($"<li><a href=\"\" >Пункт меню</a></li>");
+                        streamwriter.WriteLine($"<li><p>Название сайта</p></li>");
+                        streamwriter.WriteLine($"<li><a href=\"\" >Пункт меню</a></li>");
+                        streamwriter.WriteLine($"<li><a href=\"\" >Пункт меню</a></li>");
+                        streamwriter.WriteLine("</ul>");
+                        streamwriter.WriteLine("</div>");
+                }
+
+                if (comboBox2.SelectedIndex == 1) // НАВИГАЦИОННОЕ МЕНЮ по краям
+                {
+
+                        streamwriter.WriteLine("<div class=" + "nav-menu-2" + ">");
+                        streamwriter.WriteLine("<ul class=" + "main-menu-2" + ">");
+                    streamwriter.WriteLine($"<li><a href=\"\" >Пункт меню</a></li>");
+                    streamwriter.WriteLine($"<li><a href=\"\" >Пункт меню</a></li>");
+                        streamwriter.WriteLine($"<div class=" + "main-menu2-right" + ">");
+                    streamwriter.WriteLine($"<li><a href=\"\" >Пункт меню</a></li>");
+                    streamwriter.WriteLine($"<li><a href=\"\" >Пункт меню</a></li>");
+                    streamwriter.WriteLine("</div>");
+                        streamwriter.WriteLine("</ul>");
+                        streamwriter.WriteLine("</div>");
+                }
+            }
+
+            if (comboBox5.SelectedIndex == 1) // ТТЕКСТ ПОЛЕ
+            {
+                    streamwriter.WriteLine("<div class=" + "fondiv" + ">");
+                    streamwriter.WriteLine("<br><br>");
+                    streamwriter.WriteLine($"<b class=\"text1\">Зимняя рыбалка</b> <br>");
+                    streamwriter.WriteLine($"<p class=\"text2\">Зи́мняя рыба́лка — рыбалка в зимний период, обычно на льду через лунку или прорубь.</p>");
+                    streamwriter.WriteLine("</div>");
+                    streamwriter.WriteLine("<br>");
+            }
+
+            if (comboBox4.SelectedIndex == 0)// ПРЕИМУЩЕСТВА
+            {
+                    streamwriter.WriteLine("<div class=" + "prem1" + ">");
+                    streamwriter.WriteLine($"<h2>Преимущества рыбалки</h2>");
+                    streamwriter.WriteLine("<ol>");
+                    streamwriter.WriteLine($"<li>Преимущество1");
+                streamwriter.WriteLine($"<li>Преимущество2");
+                streamwriter.WriteLine($"<li>Преимущество3");
+
+                streamwriter.WriteLine("</ol>");
+                    streamwriter.WriteLine("</div>");
+            }
+            if (comboBox4.SelectedIndex == 1) // ПРЕИМУЩЕСТВА
+            {
+                streamwriter.WriteLine("<div class=" + "prem1" + ">");
+                streamwriter.WriteLine($"<h2>Преимущества рыбалки</h2>");
+                streamwriter.WriteLine("<ol>");
+                streamwriter.WriteLine($"<li>Преимущество1");
+                streamwriter.WriteLine($"<li>Преимущество2");
+                streamwriter.WriteLine($"<li>Преимущество3");
+
+                streamwriter.WriteLine("</ol>");
+                streamwriter.WriteLine("</div>");
+            }
+            if (comboBox4.SelectedIndex == 2)// ПРЕИМУЩЕСТВА
+            {
+
+            }
+
+            if (comboBox7.SelectedIndex == 0) // Галерея
+            {
+
+            }
+
+            if (comboBox3.SelectedIndex == 1) // КОНТАКТЫ
+            {
+                    streamwriter.WriteLine("<div class=" + "contacts-1" + ">");
+                    streamwriter.WriteLine($"<p>+798218392319</p>");
+                    streamwriter.WriteLine($"<p>negoric@bk.ru</p>");
+                    streamwriter.WriteLine("</div>");
+            }
+            if (comboBox6.SelectedIndex == 0) // ФУТЕР
+            {
+                    streamwriter.WriteLine("<div class=" + "podval1" + ">");
+                    streamwriter.WriteLine("<ul class=" + "podval-1" + ">");
+                    streamwriter.WriteLine($"<li><a href=\"podval-img1\" src= >Копирайт сайта</a></li>");
+                    streamwriter.WriteLine("<div class=" + "main-menu2-right" + ">");
+                    streamwriter.WriteLine($"<li><img class=\"podval-img1\" src=\"C:\\Users\\negor\\OneDrive\\Рабочий стол\\Курсач\\d29fc14e3e508b26c3c121c133df174c.png\" alt =\"\" height=\"40px\"></li>");
+                    streamwriter.WriteLine($"<li><img class=\"podval-img2\" src=\"C:\\Users\negor\\OneDrive\\Рабочий стол\\Курсач\\tik_tok_logo.png\" alt =\"\" height=\"40px\"></li>");
+                    streamwriter.WriteLine("</div>");
+                    streamwriter.WriteLine("</ul>");
+                    streamwriter.WriteLine("</div>");
+            }
+            if (comboBox6.SelectedIndex == 1) // ФУТЕР
+            {
+                    streamwriter.WriteLine("<div class=" + "podval2" + ">");
+                    streamwriter.WriteLine("<ul class=" + "pod" + ">");
+                    streamwriter.WriteLine($"<li><a href=\"\" >Ссылка1</a></li>");
+                    streamwriter.WriteLine($"<li><a href=\"\" >Ссылка2</a></li>");
+                    streamwriter.WriteLine($"<li><a href=\"\" >Ссылка3</a></li>");
+                    streamwriter.WriteLine($"<li><a href=\"\" >Ссылка4</a></li>");
+                    streamwriter.WriteLine($"<li><a href=\"\" >Ссылка5</a></li>");
+                    streamwriter.WriteLine("</ul>");
+                    streamwriter.WriteLine($"<p class=\"podval-p\">Копирайт сайта</p>");
+                    streamwriter.WriteLine("</div>");
+            }
+
+
+            streamwriter.WriteLine("</body>");
+            streamwriter.WriteLine("</html>");
+            streamwriter.Close();
+
+            System.Diagnostics.Process.Start(@"D:\index.html");
+            //System.Diagnostics.Process.Start(path);
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -243,5 +428,20 @@ namespace Site_Creator
                 
             }
         }
+
+        private void checkBox3_CheckedChanged_1(object sender, EventArgs e)
+        {
+            if(checkBox3.Checked == true)
+            {
+                label1.Visible = true;
+                comboBox1.Visible = true;
+            }
+            else
+            {
+                label1.Visible = false;
+                comboBox1.Visible = false;
+            }
+        }
+
     }
 }
