@@ -36,7 +36,7 @@ namespace Site_Creator
             // 1 КОМБО БОКС ОБЛОЖКА
             var dataSource1 = new List<ComboClass>();
             dataSource1.Add(new ComboClass() { IdCombo = 1, NameCombo = "Обложка: заголовок и описание" });
-            dataSource1.Add(new ComboClass() { IdCombo = 2, NameCombo = "Обложка: логотип на фоне" });
+            dataSource1.Add(new ComboClass() { IdCombo = 2, NameCombo = "Фоновое изображение" });
             dataSource1.Add(new ComboClass() { IdCombo = 3, NameCombo = "Обложка: заголовок и подзаголовок" });
 
             comboBox1.DataSource = dataSource1;
@@ -143,6 +143,8 @@ namespace Site_Creator
 
             if(comboBox1.SelectedIndex == 1)// ОБЛОЖКА
             {
+                applyForm.label2.Visible = false;
+                applyForm.pictureBox2.Visible = false;
                 applyForm.label5.Visible = false;
                 applyForm.textBox7.Visible = false;
                 applyForm.label8.Visible = false;
@@ -239,27 +241,35 @@ namespace Site_Creator
             {
                 if (comboBox1.SelectedIndex == 0) // ОБЛОЖКА
                 {
-                        streamwriter.WriteLine("<div class=" + "zagolovok1" + ">");
-                        streamwriter.WriteLine("<div class=" + "img" + ">");
-                        streamwriter.WriteLine($"<h2>Заголовок обложки</h2>");
-                        streamwriter.WriteLine("<br>");
-                        streamwriter.WriteLine($"<p>Подзаголовок обложки</p>");
-                        streamwriter.WriteLine("</div>");
-                        streamwriter.WriteLine("</div>");
-                    }
+                    streamwriter.WriteLine("<div class=" + "zagolovok1" + ">");
+                    streamwriter.WriteLine("<div class=" + "img" + ">");
+                    streamwriter.WriteLine($"<h2>Заголовок обложки</h2>");
+                    streamwriter.WriteLine("<br>");
+                    streamwriter.WriteLine($"<p>Подзаголовок обложки</p>");
+                    streamwriter.WriteLine("</div>");
+                    streamwriter.WriteLine("</div>");
                 }
+
+                if (comboBox1.SelectedIndex == 1) // ОБЛОЖКА
+                {
+                    streamwriter.WriteLine("<div class=" + "zagolovok3" + ">");
+                    streamwriter.WriteLine($"<img class=\"imagefull\" src=\"C:\\Users\negor\\OneDrive\\Рабочий стол\\Курсач\\Фотки\\Youtube-kanal-Dodo-Pizza-Russia.jpg\">");
+                    streamwriter.WriteLine("</div>");
+                }
+
                 if (comboBox1.SelectedIndex == 2) // ОБЛОЖКА
                 {
-                        streamwriter.WriteLine("<div class=" + "zagolovok2" + ">");
-                        streamwriter.WriteLine("<div class=" + "img" + ">");
-                        streamwriter.WriteLine($"<p class=\"zag1\">Заголовок обложки</p>");
-                        streamwriter.WriteLine("<hr class= \"hr1\">");
-                        streamwriter.WriteLine("<br>");
-                        streamwriter.WriteLine($"<p class= \"opisanie\">Описание обложки");
-                        streamwriter.WriteLine("</p>");
-                        streamwriter.WriteLine("</div>");
-                        streamwriter.WriteLine("</div>");
+                    streamwriter.WriteLine("<div class=" + "zagolovok2" + ">");
+                    streamwriter.WriteLine("<div class=" + "img" + ">");
+                    streamwriter.WriteLine($"<p class=\"zag1\">Заголовок обложки</p>");
+                    streamwriter.WriteLine("<hr class= \"hr1\">");
+                    streamwriter.WriteLine("<br>");
+                    streamwriter.WriteLine($"<p class= \"opisanie\">Описание обложки");
+                    streamwriter.WriteLine("</p>");
+                    streamwriter.WriteLine("</div>");
+                    streamwriter.WriteLine("</div>");
                 }
+            }
 
             if (checkBox2.Checked == true) // НАВИГАЦИОННОЕ МЕНЮ С ЛОГО ПО ЦЕНТРУ
             {
@@ -296,7 +306,7 @@ namespace Site_Creator
             {
                     streamwriter.WriteLine("<div class=" + "fondiv" + ">");
                     streamwriter.WriteLine("<br><br>");
-                    streamwriter.WriteLine($"<b class=\"text1\">Зимняя рыбалка</b> <br>");
+                    streamwriter.WriteLine($"<b class=\"text1\">Заголовок тестового поля</b> <br>");
                     streamwriter.WriteLine($"<p class=\"text2\">Зи́мняя рыба́лка — рыбалка в зимний период, обычно на льду через лунку или прорубь.</p>");
                     streamwriter.WriteLine("</div>");
                     streamwriter.WriteLine("<br>");
@@ -305,7 +315,7 @@ namespace Site_Creator
             if (comboBox4.SelectedIndex == 0)// ПРЕИМУЩЕСТВА
             {
                     streamwriter.WriteLine("<div class=" + "prem1" + ">");
-                    streamwriter.WriteLine($"<h2>Преимущества рыбалки</h2>");
+                    streamwriter.WriteLine($"<h2>Преимущества меню</h2>");
                     streamwriter.WriteLine("<ol>");
                     streamwriter.WriteLine($"<li>Преимущество1");
                 streamwriter.WriteLine($"<li>Преимущество2");
@@ -317,7 +327,7 @@ namespace Site_Creator
             if (comboBox4.SelectedIndex == 1) // ПРЕИМУЩЕСТВА
             {
                 streamwriter.WriteLine("<div class=" + "prem1" + ">");
-                streamwriter.WriteLine($"<h2>Преимущества рыбалки</h2>");
+                streamwriter.WriteLine($"<h2>Преимущества меню</h2>");
                 streamwriter.WriteLine("<ol>");
                 streamwriter.WriteLine($"<li>Преимущество1");
                 streamwriter.WriteLine($"<li>Преимущество2");
@@ -401,16 +411,6 @@ namespace Site_Creator
             else
             {
                 comboBox1.SelectedIndex = 0;
-            }
-        }
-
-        private void checkBox4_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkBox4.Checked == true)
-            {
-            }
-            else
-            {
             }
         }
 

@@ -14,6 +14,10 @@ namespace Site_Creator
     public partial class FirstApply : Form
     {
         string path = @"C:\Users\negor\OneDrive\Рабочий стол\Курсач\HTML + CSS\HTML.html";
+        string picturePath = ""; // ОБЛОЖКА
+        string picturePath1 = ""; // ОБЛОЖКА
+        string picturePath2 = ""; // ОБЛОЖКА
+
 
         public FirstApply()
         {
@@ -22,8 +26,9 @@ namespace Site_Creator
         int coutinho = 0;
         private void button1_Click(object sender, EventArgs e)
         {
+            
             coutinho++;
-            if (coutinho <= 5)
+            if (listBox1.Items.Count <= 4)
             {
                 listBox1.Items.Add(textBox9.Text);
                 textBox9.Text = "";
@@ -82,6 +87,7 @@ namespace Site_Creator
             streamwriter.WriteLine("</head>");
             streamwriter.WriteLine("<body>");
 
+
             if (form1.checkBox3.Checked == true)
             {
                 if (form1.comboBox1.SelectedIndex == 0) // ОБЛОЖКА
@@ -101,11 +107,26 @@ namespace Site_Creator
                         MessageBox.Show("Заполните обложку");
                     }
                 }
+                if (form1.comboBox1.SelectedIndex == 1) // ОБЛОЖКА
+                {
+                    if (pictureBox3.Image != null && textBox7.Text != null && textBox8.Text != null)
+                    {
+
+                        streamwriter.WriteLine("<div class=" + "zagolovok3" + ">");
+                        streamwriter.WriteLine($"<img class=\"imagefull\" src=\"{picturePath}\">");
+                        streamwriter.WriteLine("</div>");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Заполните обложку");
+                    }
+                }
                 if (form1.comboBox1.SelectedIndex == 2) // ОБЛОЖКА
                 {
 
                     if (pictureBox3.Image != null && textBox7.Text != null && textBox8.Text != null)
                     {
+
                         streamwriter.WriteLine("<div class=" + "zagolovok2" + ">");
                         streamwriter.WriteLine("<div class=" + "img" + ">");
                         streamwriter.WriteLine($"<p class=\"zag1\">{textBox7.Text}</p>");
@@ -118,7 +139,7 @@ namespace Site_Creator
                     }
                     else
                     {
-                        MessageBox.Show("Заполните обложку 2");
+                        MessageBox.Show("Заполните обложку 3");
                     }
                 }
             }
@@ -129,6 +150,7 @@ namespace Site_Creator
                 {
                     if (textBox12.Text != null && listBox1.Items.Count > 0)
                     {
+
                         streamwriter.WriteLine("<div class=" + "nav-menu-1" + ">");
                         streamwriter.WriteLine("<ul class=" + "main-menu-1" + ">");
                         for (int i = 0; i < listBox1.Items.Count - 2; i++)
@@ -153,6 +175,8 @@ namespace Site_Creator
                 {
                     if (textBox12.Text != null && listBox1.Items.Count > 0)
                     {
+
+
                         streamwriter.WriteLine("<div class=" + "nav-menu-2" + ">");
                         streamwriter.WriteLine("<ul class=" + "main-menu-2" + ">");
                         for (int i = 0; i < listBox1.Items.Count-2; i++)
@@ -235,19 +259,35 @@ namespace Site_Creator
             {
 
             }
-
-            if(form1.comboBox7.SelectedIndex == 0) // Галерея
+            if(form1.checkBox1.Checked == true) // Галерея
             {
-
+                if (form1.comboBox7.SelectedIndex == 0) 
+                {
+                    if(pictureBox4.Image != null && pictureBox5.Image != null)
+                    {
+                        //           < p class="galereya1">
+                        //  <img src = "https://m.media-amazon.com/images/I/71FLVw1BKBL._AC_AA180_.jpg" alt="Фотография 1" width="120" height="120">
+                        //  <img src = "C:\Users\negor\OneDrive\Рабочий стол\Курсач\d29fc14e3e508b26c3c121c133df174c.png" alt="Фотография 2" width="120" height="120">
+                        //  <img src = "C:\Users\negor\OneDrive\Рабочий стол\Курсач\tik_tok_logo.png" alt="Фотография 3" width="120" height="120">
+                        //</p>
+                        streamwriter.WriteLine("<p class=" + "galereya1" + ">");
+                        streamwriter.WriteLine($"<img src=\"{picturePath1}\" width=\"120\" height=\"120\">");
+                        streamwriter.WriteLine($"<img src=\"{picturePath2}\" width=\"120\" height=\"120\">");
+                        streamwriter.WriteLine("</p>");
+                        streamwriter.WriteLine("</div>");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Заполните все изображения");
+                    }
+                }
             }
+            
             
             if(form1.comboBox3.SelectedIndex == 1) // КОНТАКТЫ
             {
                 if(listBox3.Items.Count > 0)
                 {
-                    //                < div class="contacts-1">
-                    //    <p class="text-cont">+79175905779</p>
-                    //</div>
                     streamwriter.WriteLine("<div class=" + "contacts-1" + ">");
                     for(int i = 0; i < listBox3.Items.Count; i++)
                     {
@@ -299,7 +339,6 @@ namespace Site_Creator
                 }
             }
 
-
             streamwriter.WriteLine("</body>");
             streamwriter.WriteLine("</html>");
             streamwriter.Close();
@@ -318,7 +357,7 @@ namespace Site_Creator
         private void button6_Click(object sender, EventArgs e)
         {
             valuev++;
-            if (valuev <= 3)
+            if (listBox2.Items.Count <= 3)
             {
                 listBox2.Items.Add(textBox4.Text);
                 textBox4.Text = "";
@@ -332,7 +371,7 @@ namespace Site_Creator
         private void button9_Click(object sender, EventArgs e)
         {
             count++;
-            if(count <= 3)
+            if(listBox3.Items.Count <= 3)
             {
                 listBox3.Items.Add(textBox10.Text);
                 textBox10.Text = "";
@@ -347,23 +386,21 @@ namespace Site_Creator
         private void button12_Click(object sender, EventArgs e)
         {
             value++;
-            if (value <= 5)
+            if (listBox4.Items.Count <= 5)
             {
                 listBox4.Items.Add(textBox11.Text);
                 textBox11.Text = "";
             }
             else
             {
-                MessageBox.Show("Слишком много соц сетей", "Критическая ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Слишком много ссылок", "Критическая ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 textBox11.Text = "";
             }
         }
         
-        private void pictureBox3_Click(object sender, EventArgs e)
+        public void pictureBox3_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-
-            //string picturePath = System.IO.Path.GetDirectoryName(openFileDialog.FileName);
 
             openFileDialog.Filter = "Image Files(*.JPG; *.PNG; *.BMP)| *.JPG; *.PNG; *.BMP| All files (*.*)| *.*";
 
@@ -371,8 +408,71 @@ namespace Site_Creator
             {
                 try
                 {
+                    picturePath = openFileDialog.FileName;
                     pictureBox3.Image = new Bitmap(openFileDialog.FileName);
-                   // textBox8.Text = picturePath;
+                    //textBox8.Text = picturePath;
+                }
+                catch
+                {
+                    MessageBox.Show("Невозможно открыть выбранный файл", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            listBox1.Items.Remove(listBox1.SelectedItem);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            listBox2.Items.Remove(listBox2.SelectedItem);
+
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            listBox3.Items.Remove(listBox3.SelectedItem);
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            listBox4.Items.Remove(listBox4.SelectedItem);
+
+        }
+
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+
+            openFileDialog.Filter = "Image Files(*.JPG; *.PNG; *.BMP)| *.JPG; *.PNG; *.BMP| All files (*.*)| *.*";
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    picturePath1 = openFileDialog.FileName;
+                    pictureBox4.Image = new Bitmap(openFileDialog.FileName);
+                }
+                catch
+                {
+                    MessageBox.Show("Невозможно открыть выбранный файл", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void pictureBox5_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+
+            openFileDialog.Filter = "Image Files(*.JPG; *.PNG; *.BMP)| *.JPG; *.PNG; *.BMP| All files (*.*)| *.*";
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    picturePath2 = openFileDialog.FileName;
+                    pictureBox5.Image = new Bitmap(openFileDialog.FileName);
                 }
                 catch
                 {
