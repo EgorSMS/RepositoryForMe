@@ -1,6 +1,6 @@
 ﻿namespace Site_Creator
 {
-    partial class Form1
+    partial class StartPage
     {
         /// <summary>
         /// Обязательная переменная конструктора.
@@ -308,7 +308,7 @@
             this.comboBox8.Size = new System.Drawing.Size(284, 32);
             this.comboBox8.TabIndex = 5;
             // 
-            // Form1
+            // StartPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -320,9 +320,9 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
-            this.Name = "Form1";
+            this.Name = "StartPage";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "StartPage";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox3.ResumeLayout(false);

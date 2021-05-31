@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace Site_Creator
 {
-    public partial class Form1 : Form
+    public partial class StartPage : Form
     {
         string path = @"C:\Users\negor\OneDrive\Рабочий стол\Курсач\HTML + CSS\HTML.html";
 
@@ -122,7 +122,7 @@ namespace Site_Creator
 
 
 
-        public Form1()
+        public StartPage()
         {
             InitializeComponent();
             InitComboBox();            
@@ -302,6 +302,13 @@ namespace Site_Creator
                 }
             }
 
+             if (comboBox5.SelectedIndex == 0) // ТТЕКСТ ПОЛЕ
+            {
+                streamwriter.WriteLine("<div class=" + "singletext" + ">");
+                streamwriter.WriteLine($"<p>Обычный текст по центру</p>");
+                streamwriter.WriteLine("</div>");
+            }
+
             if (comboBox5.SelectedIndex == 1) // ТТЕКСТ ПОЛЕ
             {
                     streamwriter.WriteLine("<div class=" + "fondiv" + ">");
@@ -310,6 +317,13 @@ namespace Site_Creator
                     streamwriter.WriteLine($"<p class=\"text2\">Зи́мняя рыба́лка — рыбалка в зимний период, обычно на льду через лунку или прорубь.</p>");
                     streamwriter.WriteLine("</div>");
                     streamwriter.WriteLine("<br>");
+            }
+
+            if (comboBox5.SelectedIndex == 2) // ТТЕКСТ ПОЛЕ
+            {
+                streamwriter.WriteLine("<div class=" + "smalltext" + ">");
+                streamwriter.WriteLine($"<small>Мелкий текст</small>");
+                streamwriter.WriteLine("</div>");
             }
 
             if (comboBox4.SelectedIndex == 0)// ПРЕИМУЩЕСТВА
@@ -343,7 +357,27 @@ namespace Site_Creator
 
             if (comboBox7.SelectedIndex == 0) // Галерея
             {
+                streamwriter.WriteLine("<p class=" + "galereya1" + ">");
+                streamwriter.WriteLine($"<img src=\"https://m.media-amazon.com/images/I/71FLVw1BKBL._AC_AA180_.jpg\" width=\"120\" height=\"120\">");
+                streamwriter.WriteLine($"<img src=\"C:\\Users\\negor\\OneDrive\\Рабочий стол\\Курсач\\tik_tok_logo.png\" width=\"120\" height=\"120\">");
+                streamwriter.WriteLine("</p>");
+            }
 
+            if (comboBox7.SelectedIndex == 1) // Галерея
+            {
+                streamwriter.WriteLine("<p class=" + "galereya1" + ">");
+                streamwriter.WriteLine($"<img src=\"https://m.media-amazon.com/images/I/71FLVw1BKBL._AC_AA180_.jpg\" width=\"120\" height=\"120\">");
+                streamwriter.WriteLine($"<img src=\"C:\\Users\\negor\\OneDrive\\Рабочий стол\\Курсач\\tik_tok_logo.png\" width=\"120\" height=\"120\">");
+                streamwriter.WriteLine($"<img src=\"C:\\Users\\negor\\OneDrive\\Рабочий стол\\Курсач\\d29fc14e3e508b26c3c121c133df174c.png\" width=\"120\" height=\"120\">");
+                streamwriter.WriteLine("</p>");
+            }
+
+            if (comboBox3.SelectedIndex == 0) // КОНТАКТЫ
+            {
+                streamwriter.WriteLine("<div class=" + "contacts-1" + ">");
+                streamwriter.WriteLine($"<p>Ваши контакты</p>");
+                streamwriter.WriteLine($"<p>Ваши контакты</p>");
+                streamwriter.WriteLine("</div>");
             }
 
             if (comboBox3.SelectedIndex == 1) // КОНТАКТЫ

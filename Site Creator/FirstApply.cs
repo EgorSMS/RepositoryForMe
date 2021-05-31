@@ -17,6 +17,8 @@ namespace Site_Creator
         string picturePath = ""; // ОБЛОЖКА
         string picturePath1 = ""; // ОБЛОЖКА
         string picturePath2 = ""; // ОБЛОЖКА
+        string picturePath6 = ""; // Галерея
+
 
 
         public FirstApply()
@@ -78,7 +80,7 @@ namespace Site_Creator
 
         private void button14_Click(object sender, EventArgs e)
         {
-            Form1 form1 = Owner as Form1;
+            StartPage form1 = Owner as StartPage;
             StreamWriter streamwriter = new StreamWriter(@"D:\index.html");
             streamwriter.WriteLine("<html>");
             streamwriter.WriteLine("<head>");
@@ -198,8 +200,22 @@ namespace Site_Creator
                     }
                 }
             }
-            
-            if(form1.comboBox5.SelectedIndex == 1) // ТТЕКСТ ПОЛЕ
+            if (form1.comboBox5.SelectedIndex == 0) // ТТЕКСТ ПОЛЕ
+            {
+                if (textBox1.Text != null)
+                {
+                    streamwriter.WriteLine("<div class=" + "singletext" + ">");
+                    streamwriter.WriteLine($"<p>{textBox1.Text}</p>");
+                    streamwriter.WriteLine("</div>");
+
+                }
+                else
+                {
+                    MessageBox.Show("Не заполнен тестовый блок");
+                }
+            }
+
+            if (form1.comboBox5.SelectedIndex == 1) // ТТЕКСТ ПОЛЕ
             {
                 if(textBox2.Text != null && textBox1.Text != null)
                 {
@@ -214,6 +230,20 @@ namespace Site_Creator
                 else
                 {
                     MessageBox.Show("Не заполнен тестовый блок 2");
+                }
+            }
+
+            if (form1.comboBox5.SelectedIndex == 2) // ТТЕКСТ ПОЛЕ
+            {
+                if (textBox1.Text != null)
+                {
+                    streamwriter.WriteLine("<div class=" + "smalltext" + ">");
+                    streamwriter.WriteLine($"<small>{textBox1.Text}</small>");
+                    streamwriter.WriteLine("</div>");
+                }
+                else
+                {
+                    MessageBox.Show("Не заполнен тестовый блок 3");
                 }
             }
 
@@ -265,11 +295,7 @@ namespace Site_Creator
                 {
                     if(pictureBox4.Image != null && pictureBox5.Image != null)
                     {
-                        //           < p class="galereya1">
-                        //  <img src = "https://m.media-amazon.com/images/I/71FLVw1BKBL._AC_AA180_.jpg" alt="Фотография 1" width="120" height="120">
-                        //  <img src = "C:\Users\negor\OneDrive\Рабочий стол\Курсач\d29fc14e3e508b26c3c121c133df174c.png" alt="Фотография 2" width="120" height="120">
-                        //  <img src = "C:\Users\negor\OneDrive\Рабочий стол\Курсач\tik_tok_logo.png" alt="Фотография 3" width="120" height="120">
-                        //</p>
+
                         streamwriter.WriteLine("<p class=" + "galereya1" + ">");
                         streamwriter.WriteLine($"<img src=\"{picturePath1}\" width=\"120\" height=\"120\">");
                         streamwriter.WriteLine($"<img src=\"{picturePath2}\" width=\"120\" height=\"120\">");
@@ -281,10 +307,44 @@ namespace Site_Creator
                         MessageBox.Show("Заполните все изображения");
                     }
                 }
+
+
+                if (form1.comboBox7.SelectedIndex == 1)
+                {
+                    if (pictureBox4.Image != null && pictureBox5.Image != null && pictureBox6.Image != null)
+                    {
+                        streamwriter.WriteLine("<p class=" + "galereya1" + ">");
+                        streamwriter.WriteLine($"<img src=\"{picturePath1}\" width=\"120\" height=\"120\">");
+                        streamwriter.WriteLine($"<img src=\"{picturePath2}\" width=\"120\" height=\"120\">");
+                        streamwriter.WriteLine($"<img src=\"{picturePath6}\" width=\"120\" height=\"120\">");
+                        streamwriter.WriteLine("</p>");
+                        streamwriter.WriteLine("</div>");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Заполните все изображения");
+                    }
+                }
             }
-            
-            
-            if(form1.comboBox3.SelectedIndex == 1) // КОНТАКТЫ
+
+            if (form1.comboBox3.SelectedIndex == 0) // КОНТАКТЫ
+            {
+                if (listBox3.Items.Count > 0)
+                {
+                    streamwriter.WriteLine("<div class=" + "contacts-1" + ">");
+                    for (int i = 0; i < listBox3.Items.Count; i++)
+                    {
+                        streamwriter.WriteLine($"<p>{listBox3.Items[i]}</p>");
+                    }
+                    streamwriter.WriteLine("</div>");
+                }
+                else
+                {
+                    MessageBox.Show("Заполните контакты");
+                }
+            }
+
+            if (form1.comboBox3.SelectedIndex == 1) // КОНТАКТЫ
             {
                 if(listBox3.Items.Count > 0)
                 {
@@ -348,7 +408,7 @@ namespace Site_Creator
 
         private void button13_Click(object sender, EventArgs e)
         {
-            Form1 form1 = new Form1();
+            StartPage form1 = new StartPage();
             this.Close();
             form1.ShowDialog();
             
@@ -480,5 +540,55 @@ namespace Site_Creator
                 }
             }
         }
+
+        private void pictureBox6_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+
+            openFileDialog.Filter = "Image Files(*.JPG; *.PNG; *.BMP)| *.JPG; *.PNG; *.BMP| All files (*.*)| *.*";
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    picturePath6 = openFileDialog.FileName;
+                    pictureBox6.Image = new Bitmap(openFileDialog.FileName);
+                }
+                catch
+                {
+                    MessageBox.Show("Невозможно открыть выбранный файл", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            int i = listBox3.SelectedIndex;
+            listBox3.Items.RemoveAt(i);
+            listBox3.Items.Insert(i, textBox10.Text);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            int i = listBox1.SelectedIndex;
+            listBox1.Items.RemoveAt(i);
+            listBox1.Items.Insert(i, textBox9.Text);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            int i = listBox2.SelectedIndex;
+            listBox2.Items.RemoveAt(i);
+            listBox2.Items.Insert(i, textBox4.Text);
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            int i = listBox4.SelectedIndex;
+            listBox4.Items.RemoveAt(i);
+            listBox4.Items.Insert(i, textBox11.Text);
+        }
+
+       
     }
 }

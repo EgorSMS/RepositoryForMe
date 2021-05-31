@@ -89,7 +89,6 @@
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.button14 = new System.Windows.Forms.Button();
             this.button13 = new System.Windows.Forms.Button();
-            this.button15 = new System.Windows.Forms.Button();
             this.flowLayoutPanel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -297,6 +296,7 @@
             this.button2.TabIndex = 5;
             this.button2.Text = "Изменить";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
@@ -441,6 +441,7 @@
             this.button4.TabIndex = 5;
             this.button4.Text = "Изменить";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button6
             // 
@@ -478,6 +479,7 @@
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox6.TabIndex = 38;
             this.pictureBox6.TabStop = false;
+            this.pictureBox6.Click += new System.EventHandler(this.pictureBox6_Click);
             // 
             // pictureBox5
             // 
@@ -612,6 +614,7 @@
             this.button8.TabIndex = 5;
             this.button8.Text = "Изменить";
             this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // button9
             // 
@@ -708,6 +711,7 @@
             this.button11.TabIndex = 5;
             this.button11.Text = "Изменить";
             this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
             // 
             // button12
             // 
@@ -725,7 +729,6 @@
             // 
             this.groupBox7.Controls.Add(this.button14);
             this.groupBox7.Controls.Add(this.button13);
-            this.groupBox7.Controls.Add(this.button15);
             this.groupBox7.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox7.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.groupBox7.Location = new System.Drawing.Point(3, 2611);
@@ -738,11 +741,11 @@
             // 
             this.button14.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button14.ForeColor = System.Drawing.Color.Black;
-            this.button14.Location = new System.Drawing.Point(259, 30);
+            this.button14.Location = new System.Drawing.Point(459, 30);
             this.button14.Name = "button14";
             this.button14.Size = new System.Drawing.Size(182, 46);
             this.button14.TabIndex = 35;
-            this.button14.Text = "Показать макет";
+            this.button14.Text = "Создать сайт";
             this.button14.UseVisualStyleBackColor = true;
             this.button14.Click += new System.EventHandler(this.button14_Click);
             // 
@@ -750,24 +753,13 @@
             // 
             this.button13.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button13.ForeColor = System.Drawing.Color.Black;
-            this.button13.Location = new System.Drawing.Point(20, 30);
+            this.button13.Location = new System.Drawing.Point(84, 30);
             this.button13.Name = "button13";
             this.button13.Size = new System.Drawing.Size(182, 46);
             this.button13.TabIndex = 34;
             this.button13.Text = "Назад";
             this.button13.UseVisualStyleBackColor = true;
             this.button13.Click += new System.EventHandler(this.button13_Click);
-            // 
-            // button15
-            // 
-            this.button15.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button15.ForeColor = System.Drawing.Color.Black;
-            this.button15.Location = new System.Drawing.Point(518, 30);
-            this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(200, 46);
-            this.button15.TabIndex = 4;
-            this.button15.Text = "Создать макет";
-            this.button15.UseVisualStyleBackColor = true;
             // 
             // FirstApply
             // 
@@ -844,7 +836,6 @@
         public System.Windows.Forms.Button button12;
         public System.Windows.Forms.GroupBox groupBox7;
         public System.Windows.Forms.Button button13;
-        public System.Windows.Forms.Button button15;
         public System.Windows.Forms.Label label15;
         public System.Windows.Forms.PictureBox pictureBox3;
         public System.Windows.Forms.Button button14;
