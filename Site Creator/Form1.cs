@@ -31,7 +31,7 @@ namespace Site_Creator
             }
         }
 
-        public void InitComboBox()
+        public void InitComboBox() // МЕТОД ИНИЦИАЛИЗАЦИИ ТЕКСТ БОКСОВ
         {
             // 1 КОМБО БОКС ОБЛОЖКА
             var dataSource1 = new List<ComboClass>();
@@ -129,7 +129,7 @@ namespace Site_Creator
         }
 
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e) // МЕТОД ВЫБОРА ЭЛЕМЕНТОВ НА ИНДИВИДУАЛЬНОЙ СТРАНИЦЕ ЗАПОЛНЕНИЯ МАКЕТОВ
         {
             FirstApply applyForm = new FirstApply();
 
@@ -227,7 +227,7 @@ namespace Site_Creator
             this.Visible = false;
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e) // МЕТОД заполнения примерных макетов
         {
             StreamWriter streamwriter = new StreamWriter(@"D:\index.html");
             streamwriter.WriteLine("<html>");

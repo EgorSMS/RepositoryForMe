@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Site_Creator
@@ -59,7 +53,7 @@ namespace Site_Creator
         }
 
 
-        private void pictureBox2_Click(object sender, EventArgs e)
+        private void pictureBox2_Click(object sender, EventArgs e) // МЕТОД ДОБАВЛЕНИЯ ИЗОБРАЖЕНИЯ
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
 
@@ -78,7 +72,7 @@ namespace Site_Creator
             }
         }
 
-        private void button14_Click(object sender, EventArgs e)
+        private void button14_Click(object sender, EventArgs e) // МЕТОД ИНДИВИДУАЛЬНОГО ОФОРМЛЕНИЯ САЙТА
         {
             StartPage form1 = Owner as StartPage;
             StreamWriter streamwriter = new StreamWriter(@"D:\index.html");
@@ -406,7 +400,7 @@ namespace Site_Creator
             System.Diagnostics.Process.Start(@"D:\index.html");
         }
 
-        private void button13_Click(object sender, EventArgs e)
+        private void button13_Click(object sender, EventArgs e) // МЕТОД ВЫХОДА СО СТРАНИЦЫ
         {
             StartPage form1 = new StartPage();
             this.Close();
@@ -414,7 +408,7 @@ namespace Site_Creator
             
         }
         int valuev = 0;
-        private void button6_Click(object sender, EventArgs e)
+        private void button6_Click(object sender, EventArgs e) // МЕТОД ПРОВЕРКА НА КОЛИЧЕСТВО ВВЕДЕННЫХ ЭЛЕМЕНТОВ
         {
             valuev++;
             if (listBox2.Items.Count <= 3)
@@ -428,7 +422,7 @@ namespace Site_Creator
             }
         }
         int count = 0;
-        private void button9_Click(object sender, EventArgs e)
+        private void button9_Click(object sender, EventArgs e) // МЕТОД ПРОВЕРКА НА КОЛИЧЕСТВО ВВЕДЕННЫХ ЭЛЕМЕНТОВ
         {
             count++;
             if(listBox3.Items.Count <= 3)
@@ -443,7 +437,7 @@ namespace Site_Creator
             }
         }
         int value = 0;
-        private void button12_Click(object sender, EventArgs e)
+        private void button12_Click(object sender, EventArgs e) // МЕТОД ПРОВЕРКА НА КОЛИЧЕСТВО ВВЕДЕННЫХ ЭЛЕМЕНТОВ
         {
             value++;
             if (listBox4.Items.Count <= 5)
@@ -458,7 +452,7 @@ namespace Site_Creator
             }
         }
         
-        public void pictureBox3_Click(object sender, EventArgs e)
+        public void pictureBox3_Click(object sender, EventArgs e) // МЕТОД ДОБАВЛЯЮЩИЙ ИЗОБРАЖЕНИЕ
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
 
@@ -479,29 +473,29 @@ namespace Site_Creator
             }
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void button5_Click(object sender, EventArgs e) // МЕТОД УДАЛЯЮЩИЙ ЭЛЕМЕНТ ИЗ ЛИСТ БОКСА
         {
             listBox1.Items.Remove(listBox1.SelectedItem);
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e) // МЕТОД УДАЛЯЮЩИЙ ЭЛЕМЕНТ ИЗ ЛИСТ БОКСА
         {
             listBox2.Items.Remove(listBox2.SelectedItem);
 
         }
 
-        private void button7_Click(object sender, EventArgs e)
+        private void button7_Click(object sender, EventArgs e) // МЕТОД УДАЛЯЮЩИЙ ЭЛЕМЕНТ ИЗ ЛИСТ БОКСА
         {
             listBox3.Items.Remove(listBox3.SelectedItem);
         }
 
-        private void button10_Click(object sender, EventArgs e)
+        private void button10_Click(object sender, EventArgs e) // МЕТОД УДАЛЯЮЩИЙ ЭЛЕМЕНТ ИЗ ЛИСТ БОКСА
         {
             listBox4.Items.Remove(listBox4.SelectedItem);
 
         }
 
-        private void pictureBox4_Click(object sender, EventArgs e)
+        private void pictureBox4_Click(object sender, EventArgs e) // МЕТОД ДОБАВЛЯЮЩИЙ ИЗОБРАЖЕНИЕ
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
 
@@ -521,7 +515,7 @@ namespace Site_Creator
             }
         }
 
-        private void pictureBox5_Click(object sender, EventArgs e)
+        private void pictureBox5_Click(object sender, EventArgs e)// МЕТОД ДОБАВЛЯЮЩИЙ ИЗОБРАЖЕНИЕ
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
 
@@ -541,7 +535,7 @@ namespace Site_Creator
             }
         }
 
-        private void pictureBox6_Click(object sender, EventArgs e)
+        private void pictureBox6_Click(object sender, EventArgs e) // МЕТОД ДОБАВЛЯЮЩИЙ ИЗОБРАЖЕНИЕ
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
 
@@ -561,28 +555,28 @@ namespace Site_Creator
             }
         }
 
-        private void button8_Click(object sender, EventArgs e)
+        private void button8_Click(object sender, EventArgs e) // МЕТОД ИЗМЕНЯЮЩИЙ ЭЛЕМЕНТ В ЛИСТ БОКСЕ
         {
             int i = listBox3.SelectedIndex;
             listBox3.Items.RemoveAt(i);
             listBox3.Items.Insert(i, textBox10.Text);
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)// МЕТОД ИЗМЕНЯЮЩИЙ ЭЛЕМЕНТ В ЛИСТ БОКСЕ
         {
             int i = listBox1.SelectedIndex;
             listBox1.Items.RemoveAt(i);
             listBox1.Items.Insert(i, textBox9.Text);
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void button4_Click(object sender, EventArgs e)// МЕТОД ИЗМЕНЯЮЩИЙ ЭЛЕМЕНТ В ЛИСТ БОКСЕ
         {
             int i = listBox2.SelectedIndex;
             listBox2.Items.RemoveAt(i);
             listBox2.Items.Insert(i, textBox4.Text);
         }
 
-        private void button11_Click(object sender, EventArgs e)
+        private void button11_Click(object sender, EventArgs e)// МЕТОД ИЗМЕНЯЮЩИЙ ЭЛЕМЕНТ В ЛИСТ БОКСЕ
         {
             int i = listBox4.SelectedIndex;
             listBox4.Items.RemoveAt(i);
